@@ -10,10 +10,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 //screens
 import SignUpScreen from './components/signup';
-import ExampleScreen from "./components/example"
-;
-const Stack = createStackNavigator();
+import ExampleScreen from "./components/example";
+import HomeScreen from "./components/home";
+import LoginScreen from "./components/login";
 
+const Stack = createStackNavigator(); 
 export default function App() {
   return (
     // <View style={styles.container}>
@@ -24,16 +25,12 @@ export default function App() {
       <Stack.Navigator initialRouteName="SignUp">
         <Stack.Screen name= "SignUp" component={SignUpScreen} />
         <Stack.Screen name= "example" component={ExampleScreen} />
+        <Stack.Screen name= "home" component={HomeScreen} />
+        <Stack.Screen name= "login" component={LoginScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

@@ -83,8 +83,9 @@ export default class SignUp extends React.Component {
 
   example = () =>{
       console.log('I am  example');
-      this.props.navigation.navigate('example');
+      this.props.navigation.navigate('home');
   }
+  
  
   render() {
     return (
