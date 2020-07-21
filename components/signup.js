@@ -83,7 +83,7 @@ export default class SignUp extends React.Component {
 
   example = () =>{
       console.log('I am  example');
-      this.props.navigation.navigate('home');
+      this.props.navigation.navigate('login');
   }
   
  
@@ -123,9 +123,9 @@ export default class SignUp extends React.Component {
           title='Sign Up'
           onPress={this.signUp}
         />
-
+        
         <Button
-          title='Example'
+          title='Log in'
           onPress={this.example}
         />
       </View>

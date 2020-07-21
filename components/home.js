@@ -6,6 +6,16 @@ import card2 from '../assets/card2.jpg';
 
 
 export default class home extends React.Component{
+
+
+    classes = () =>{
+        console.log('I have  classes');
+        this.props.navigation.navigate('classes');
+    }
+    lessons = () =>{
+        console.log('I have  lessons');
+        this.props.navigation.navigate('lessons');
+    }
     render() {
         return (
             <View>
@@ -25,6 +35,7 @@ export default class home extends React.Component{
                             onPress={() => {}}
                             title="Classes"
                             color="#1C0F6B"
+                            onPress={this.classes}
                         />
                         
                         </CardAction>
@@ -42,6 +53,7 @@ export default class home extends React.Component{
                             onPress={() => {}}
                             title="Lessons"
                             color="#1C0F6B"
+                            onPress={this.lessons}
                         />
                         
                         </CardAction>

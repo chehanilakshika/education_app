@@ -13,6 +13,8 @@ import SignUpScreen from './components/signup';
 import ExampleScreen from "./components/example";
 import HomeScreen from "./components/home";
 import LoginScreen from "./components/login";
+import classesPage from "./components/classes";
+import lessonsPage from "./components/lessons";
 
 const Stack = createStackNavigator(); 
 export default function App() {
@@ -22,11 +24,13 @@ export default function App() {
     //   <StatusBar style="auto" />
     // </View>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignUp">
+      <Stack.Navigator initialRouteName="login">
         <Stack.Screen name= "SignUp" component={SignUpScreen} />
         <Stack.Screen name= "example" component={ExampleScreen} />
         <Stack.Screen name= "home" component={HomeScreen} />
         <Stack.Screen name= "login" component={LoginScreen} />
+        <Stack.Screen name= "classes" component={classesPage} />
+        <Stack.Screen name= "lessons" component={lessonsPage} />
 
       </Stack.Navigator>
     </NavigationContainer>
