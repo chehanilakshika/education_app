@@ -15,6 +15,8 @@ import HomeScreen from "./components/home";
 import LoginScreen from "./components/login";
 import classesPage from "./components/classes";
 import lessonsPage from "./components/lessons";
+import addClassPage from "./components/addclass";
+import drawer from "./components/drawer";
 
 const Stack = createStackNavigator(); 
 export default function App() {
@@ -31,6 +33,8 @@ export default function App() {
         <Stack.Screen name= "login" component={LoginScreen} />
         <Stack.Screen name= "classes" component={classesPage} />
         <Stack.Screen name= "lessons" component={lessonsPage} />
+        <Stack.Screen name= "addclass" component={addClassPage} />
+        <Stack.Screen name= "drawer" component={drawer} />
 
       </Stack.Navigator>
     </NavigationContainer>

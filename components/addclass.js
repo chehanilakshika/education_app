@@ -3,72 +3,75 @@ import { Alert, Button,Text, TextInput, View,TouchableOpacity, StyleSheet } from
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 
-export default class login extends Component {
+export default class addclass extends Component {
     state = {
-        email: '', 
-        password: '', 
-        errorMassage:null
+        myclass: '', 
+        time: '', 
+        date:''
         
       }
 
-      handleLogin=()=>{
-          const {email,password}=this.state;
-
-          firebase
-            .auth()
-            .signInWithEmailAndPassword(email,password)
-            .catch(error=>this.setState({errorMassage:error.message}));
-      };
+     
       
 
-      home = () =>{
-        console.log('I am  example');
-        this.props.navigation.navigate('home');
+      classes = () =>{
+        console.log('I have  classes');
+        this.props.navigation.navigate('classes');
     }
   render() {
 
       return(
         <View style={styles.container}>
-            <Text style={styles.greeting}>{"Helloo.."}</Text>
+            <Text style={styles.greeting}>{"Add new Class.."}</Text>
 
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
 
             <View style={styles.form}>
-                  <View>
-                        <Text style={styles.inputTitle}>Email Address</Text>
+            <View>
+                        <Text style={styles.inputTitle}>Class</Text>
                         <TextInput 
                             style={styles.input}
-                            onChangeText={email=>this.setState({email})}
-                            value={this.state.email}
+                            onChangeText={myclass=>this.setState({myclass})}
+                            value={this.state.myclass}
+                         ></TextInput>
+
+                  </View>
+
+                  <View>
+                        <Text style={styles.inputTitle}>Time</Text>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={time=>this.setState({time})}
+                            value={this.state.time}
+                         ></TextInput>
+
+                  </View>
+
+                  <View>
+                        <Text style={styles.inputTitle}>Date</Text>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={date=>this.setState({date})}
+                            value={this.state.date}
                          ></TextInput>
 
                   </View>
 
 
-                  <View>
-                        <Text style={styles.inputTitle}>Password</Text>
-                        <TextInput 
-                            style={styles.input}  
-                            securityTextEntry 
-                            autoCapitalize ="none"
-                            onChangeText={password=>this.setState({password})}
-                            value={this.state.password}
-                             ></TextInput>
-
-                  </View>
+                  
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                <Text style={{color:"#FFF",fontWeight:"500"}} >Sign in</Text>
+            <TouchableOpacity style={styles.button} >
+                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
+            {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
                 <Text style={{color:"#414959",fontSize:13}}>New To EduApp?<Text style={{color:"#E9446A",fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
 
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
 
 
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color:"#8A8F9E",
-    fontSize:10,
+    fontSize:14,
     textTransform:"uppercase"
 
   },

@@ -4,7 +4,6 @@ import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 
 import card from '../assets/card.jpg';
 import card2 from '../assets/card2.jpg';
 
-
 export default class home extends React.Component{
 
 
@@ -14,7 +13,7 @@ export default class home extends React.Component{
     }
     lessons = () =>{
         console.log('I have  lessons');
-        this.props.navigation.navigate('lessons');
+        this.props.navigation.navigate('drawer');
     }
     render() {
         return (
