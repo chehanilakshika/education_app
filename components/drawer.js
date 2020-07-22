@@ -29,22 +29,48 @@
 // })
 
 
-import React,{Component} from 'react';
-import {View,Text,FlatList} from "react-native";
-import {Card} from "react-native-paper";
-import {Icon,Button,Container,Header,Content,Left} from 'native-base';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
+// import HomeScreen from "./home";
 
+// const Drawer = createDrawerNavigator();
 
-export default class lessonsPage extends React.Component{
+// function MyDrawer() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="home" component={HomeScreen} />
+//     </Drawer.Navigator>
+//   );
+// }
 
-
-    render() {
-        return (
-            <Container >
-                <Text> Loading drawer</Text>
-                
-            </Container>
-        );
-    }
+import React, { Component } from 'react';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
+export default class FooterTabsIconTextExample extends Component {
+  render() {
+    return (
+      <Container>
+        <Header />
+        <Content />
+        <Footer>
+          <FooterTab>
+            <Button vertical>
+              <Icon name="apps" />
+              <Text>Apps</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="camera" />
+              <Text>Camera</Text>
+            </Button>
+            <Button vertical active>
+              <Icon active name="navigate" />
+              <Text>Navigate</Text>
+            </Button>
+            <Button vertical>
+              <Icon name="person" />
+              <Text>Contact</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
+    );
+  }
 }
-
