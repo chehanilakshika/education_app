@@ -18,6 +18,8 @@ import LoginScreen from "./components/login";
 import classesPage from "./components/classes";
 import lessonsPage from "./components/lessons";
 import addClassPage from "./components/addclass";
+import person from "./components/person";
+
 import drawer from "./components/drawer";
 import { render } from 'react-dom';
 
@@ -53,14 +55,14 @@ export default class App extends React.Component {
     // </View>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
-        <Stack.Screen name= "SignUp" component={SignUpScreen} />
+        <Stack.Screen name= "started" component={SignUpScreen} />
         <Stack.Screen name= "example" component={ExampleScreen} />
         <Stack.Screen name= "home" component={HomeScreen} />
         <Stack.Screen name= "login" component={LoginScreen} />
         <Stack.Screen name= "classes" component={classesPage} />
         <Stack.Screen name= "lessons" component={lessonsPage} />
         <Stack.Screen name= "addclass" component={addClassPage} />
-        <Stack.Screen name= "drawer" component={drawer} />
+        <Stack.Screen name= "person" component={person} />
 
       </Stack.Navigator>
     </NavigationContainer>

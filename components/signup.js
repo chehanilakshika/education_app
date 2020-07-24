@@ -1,13 +1,17 @@
 // SignUp.js
+
 import React from 'react'
 import {
+  Text,
   View,
   Button,
   TextInput,
   StyleSheet,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native'
 import firebase from '../database/firebase';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class SignUp extends React.Component {
   state = {
@@ -90,64 +94,128 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          placeholder='Username'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('username', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          secureTextEntry={true}
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('password', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Email'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('email', val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Phone Number'
-          autoCapitalize="none"
-          placeholderTextColor='white'
-          onChangeText={val => this.onChangeText('phone_number', val)}
-        />
-        <Button
-          title='Sign Up'
-          onPress={this.signUp}
-        />
-        
-        <Button
-          title='Log in'
-          onPress={this.example}
-        />
+        <Text style={styles.greeting}>{"Hello New Commer.. Welcome..!"}</Text>
+
+        <View style={styles.errorMassage}>
+                {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
+            </View>
+        <ScrollView>
+        <View style={styles.form}>
+              <View>
+              <Text style={styles.inputTitle}>Username</Text>
+
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Username'
+                    autoCapitalize="none"
+                    placeholderTextColor='white'
+                    onChangeText={val => this.onChangeText('username', val)}
+                  />
+              </View>
+
+              <View>
+              <Text style={styles.inputTitle}>Password</Text>
+
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Password'
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    placeholderTextColor='white'
+                    onChangeText={val => this.onChangeText('password', val)}
+                  />
+
+              </View>
+
+              <View>
+              <Text style={styles.inputTitle}>Email</Text>
+
+                <Text style={styles.inputTitle}></Text>
+                  <TextInput
+                    style={styles.input}
+                    type="email"
+                    placeholder='Email'
+                    autoCapitalize="none"
+                    placeholderTextColor='white'
+                    onChangeText={val => this.onChangeText('email', val)}
+                  />
+
+              </View>
+
+              <View>
+              <Text style={styles.inputTitle}>Phone No.</Text>
+
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Phone Number'
+                    autoCapitalize="none"
+                    placeholderTextColor='white'
+                    onChangeText={val => this.onChangeText('phone_number', val)}
+                  />
+
+              </View>
+              <TouchableOpacity style={styles.button} >
+                <Text style={{color:"#F48FB1",fontSize:"18",fontWeight:"1000"}} >Sign in</Text>
+            </TouchableOpacity>
+                  
+           
+        </View>
+        </ScrollView>
       </View>
+
+      
     )
   }
 }
 
 const styles = StyleSheet.create({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
-    margin: 10,
-    padding: 8,
-    color: 'white',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
+  form:{
+    marginBottom:48,
+    marginHorizontal:30
+  },
+  input:{
+    borderBottomColor:"#8A8F9E",
+    borderBottomWidth:StyleSheet.hairlineWidth,
+    fontSize:14,
+    color:"#3E2723"
+  },
+  inputTitle: {
+    color:"#37474F",
+    fontSize:14,
+    textTransform:"uppercase"
+
+  },
+  button:{
+    marginHorizontal:30,
+    backgroundColor:"#E9446A",
+    borderRadius:4,
+    height:52,
+    top:30,
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+
+  },
+  greeting: {
+    marginTop:32,
+    fontSize:20,
+    color:"#E9446A",
+    fontWeight:"400",
+    textAlign:"center"
+  },
+  errorMassage:{
+    height:72,
+    justifyContent:"center",
+    marginHorizontal:30,
+    alignItems:"center"  
+
+  },
+  error: {
+    color:"#E9446A",
+    fontSize:13,
+    fontWeight:"600",
+    textAlign:"center"
+  },
 })

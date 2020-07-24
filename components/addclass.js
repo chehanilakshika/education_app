@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
-import { Alert, Button,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
+import Drawer from './drawer';
 
 export default class addclass extends Component {
     state = {

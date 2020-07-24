@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View,Text,FlatList} from "react-native";
-import {Card,IconButton} from "react-native-paper";
+import {Card} from "react-native-paper";
 import {Icon,Button,Container,Header,Content,Left} from 'native-base';
 
 
@@ -10,14 +10,14 @@ export default class lessonsPage extends React.Component{
     render() {
         return (
             <Container >
-                <Text> Loading drawer</Text>
+                <Text> Loading profile</Text>
                 <View>
                 <IconButton
                     type="solid"
                    
                     iconleft
                     icon="plus-circle"
-                    color="#E9446A"
+                    color={Colors.pink500}
                     size={80}
                     onPress={this.addclass} >
                     </IconButton>

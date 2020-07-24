@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { Alert, Button,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class login extends Component {
     state = {
@@ -21,20 +22,21 @@ export default class login extends Component {
       };
       
 
-      home = () =>{
+      started = () =>{
         console.log('I am  example');
-        this.props.navigation.navigate('home');
+        this.props.navigation.navigate('started');
     }
   render() {
 
       return(
         <View style={styles.container}>
-            <Text style={styles.greeting}>{"Helloo.."}</Text>
+                 
+
+            <Text style={styles.greeting}>{"Welcome to EduApp..!"}</Text>
 
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
-
             <View style={styles.form}>
                   <View>
                         <Text style={styles.inputTitle}>Email Address</Text>
@@ -61,16 +63,17 @@ export default class login extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                <Text style={{color:"#FFF",fontWeight:"500"}} >Sign in</Text>
+                <Text style={{color:"#FFF",fontSize:15,fontWeight:"500"}} >Sign in</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:13}}>New To EduApp?<Text style={{color:"#E9446A",fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
+                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#E9446A",fontSize:15,fontWeight:"500"}} onPress={this.started}>Sign Up</Text>
 
                 </Text>
             </TouchableOpacity>
 
 
+           
 
         </View>
       );
@@ -89,7 +92,8 @@ const styles = StyleSheet.create({
     marginTop:32,
     fontSize:18,
     fontWeight:"400",
-    textAlign:"center"
+    textAlign:"center",
+    color:"#E9446A"
   },
 
   errorMassage:{
@@ -117,7 +121,7 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     color:"#8A8F9E",
-    fontSize:10,
+    fontSize:15,
     textTransform:"uppercase"
 
   },
