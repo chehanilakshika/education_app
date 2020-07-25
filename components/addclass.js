@@ -65,7 +65,7 @@ export default class addclass extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} >
-                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
+                <Text style={{color:"#FFF",fontSize:"24",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
 
   greeting: {
     marginTop:32,
+    color:"#580A77",
     fontSize:18,
     fontWeight:"400",
     textAlign:"center"
@@ -120,14 +121,14 @@ const styles = StyleSheet.create({
     color:"#161F3D"
   },
   inputTitle: {
-    color:"#8A8F9E",
+    color:"#4C3B57",
     fontSize:14,
     textTransform:"uppercase"
 
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#E9446A",
+    backgroundColor:"#580A77",
     borderRadius:4,
     height:52,
     alignItems: "center",

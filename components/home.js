@@ -1,10 +1,8 @@
 import React,{Component} from 'react';
-import { Button,Icon,TouchableOpacity,Text, TextInput, View, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards'
+import { ImageBackground,TouchableOpacity,Text, TextInput, View, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
-import card2 from "./../assets/card2.jpg"
-import card from "./../assets/card.jpg"
+import home1 from "./../assets/home1.jpg"
+import home2 from "./../assets/home2.jpg"
 
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -22,46 +20,31 @@ export default class home extends Component{
         return(
             <View style={styles.container}>
                     <ScrollView>
-                        <View style={styles.container}>
-                            <Card>
-                            <CardImage style={styles.image}
-                                source={card2} 
-                            />
-                            {/* <CardTitle 
-                                title="This is a title" 
-                            /> */}
-                            <CardAction 
-                                separator={true} 
-                                inColumn={false}>
-                                <CardButton
-                                onPress={this.classes}
-                                title="Classes"
-                                color="blue"
-                                />
-                                
-                            </CardAction>
-                            </Card>
-                            </View>
+                        
+                            <View style={styles.greeting}>
 
-                            <View style={styles.container}>
-                            <Card>
-                            <CardImage 
-                                source={card} 
-                            />
-                            
-                            <CardAction 
-                                separator={true} 
-                                inColumn={false}>
-                                <CardButton
-                                onPress={this.lessons}
-                                title="lessons"
-                                color="blue"
-                                />
-                               
-                            </CardAction>
-                            </Card>
+                                <Text style={styles.greeting}>Classmate is now on your fingerTips</Text>
+            
                             </View>
-                            </ScrollView>
+                            
+                            <View style={styles.container2}>
+                            <View>
+                                    <ImageBackground
+                                            style={styles.stretch}
+                                            source={home1}>
+                                            
+                                    </ImageBackground>     
+                            </View>
+                            <View style={styles.container2}>
+                                    <ImageBackground
+                                            style={styles.stretch}
+                                            source={home2}>
+                                            
+                                    </ImageBackground>     
+                            </View>
+                            
+                        </View>
+                    </ScrollView>
 
                
             </View>
@@ -75,20 +58,34 @@ const styles =StyleSheet.create({
         flex: 1,
         
       },
-     
+      container2: {
+        flex: 1,
+        marginTop:10,
+      },
 
       button:{
         marginHorizontal:30,
-        backgroundColor:"#E65100",
-        borderRadius:100,
-        height:52,
-        top:100,
+        backgroundColor:"#580A77",
+        borderRadius:4,
         alignItems: "center",
         justifyContent: "center",
       },
-      image:{
-          
-      }
-    
+      stretch: {
+        width:350,
+        height:150,
+        left:5,
+         alignItems:"center" ,
+         borderRadius:10,
+        overlayColor:"#fff"
+     
+       },
+       greeting: {
+        marginTop:32,
+        fontSize:18,
+        fontWeight:"400",
+        alignItems:"center",
+        color:"#580A77",
+      },
+        
 })
 

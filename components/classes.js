@@ -24,18 +24,18 @@ export default class classesPage extends React.Component{
                                             
                                                 iconRight
                                                 icon="plus-circle"
-                                                color={Colors.pink500}
+                                                color="#5D248C"
                                                 size={50}
                                                 onPress={this.addclass} >
                                     </IconButton>
 
 
-                                    <IconButton
+                                    {/* <IconButton
                                                 type="solid"
                                             
                                                 iconRight
                                                 icon="delete-circle"
-                                                color={Colors.pink500}
+                                                color="#5D248C"
                                                 size={50}
                                                 onPress={() => console.log('Pressed')} >
 
@@ -45,11 +45,11 @@ export default class classesPage extends React.Component{
                                                 type="solid"
                                                 iconRight
                                                 icon="pencil-circle"
-                                                color={Colors.pink500}
+                                                color="#5D248C"
                                                 size={50}
                                                 onPress={() => console.log('Pressed')} >
 
-                                    <Text></Text></IconButton>
+                                    <Text></Text></IconButton> */}
                                                 
                                     <View>
                                                 

@@ -1,12 +1,8 @@
 import React,{Component} from 'react';
-import { Button,Icon,TouchableOpacity,Text, TextInput, View, StyleSheet } from 'react-native';
+import { ImageBackground,Text, View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards'
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-import card2 from "./../assets/card2.jpg"
-import card from "./../assets/card.jpg"
+import home1 from "./../assets/home1.jpg"
 
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default class home extends Component{
 
@@ -14,9 +10,19 @@ export default class home extends Component{
     render (){
         return(
             <View style={styles.container}>
-                   
+                   <ImageBackground
+            style={styles.stretch}
+              source={home1}>
+                  <IconButton
+                                                type="solid"
+                                                iconRight
+                                                icon="pencil-circle"
+                                                color="#5D248C"
+                                                size={50}
+                                                onPress={() => console.log('Pressed')} >
 
-               
+                                    <Text></Text></IconButton>
+              </ImageBackground>               
             </View>
 
         );
@@ -27,8 +33,17 @@ const styles =StyleSheet.create({
     container: {
         flex: 1,
         
+        
       },
+      stretch: {
+       width:350,
+       height:150,
+       left:5,
+        alignItems:"center" ,
+        borderRadius:10,
      
+    
+      },
     
 })
 

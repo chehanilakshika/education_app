@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import { Alert, Button,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, Image,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import logo from "./../assets/logo.jpg"
 export default class login extends Component {
     state = {
         email: '', 
@@ -22,21 +22,25 @@ export default class login extends Component {
       };
       
 
-      started = () =>{
+      home = () =>{
         console.log('I am  example');
-        this.props.navigation.navigate('started');
+        this.props.navigation.navigate('home');
     }
   render() {
 
       return(
         <View style={styles.container}>
-                 
+         <View style={styles.container2}>        
+        <View style={styles.greeting}>
+            <Image
+            style={styles.stretch}
+              source={logo}
+              width="1"/>
+        </View>
 
-            <Text style={styles.greeting}>{"Welcome to EduApp..!"}</Text>
-
-            <View style={styles.errorMassage}>
+            {/* <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
-            </View>
+            </View> */}
             <View style={styles.form}>
                   <View>
                         <Text style={styles.inputTitle}>Email Address</Text>
@@ -67,13 +71,13 @@ export default class login extends Component {
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#E9446A",fontSize:15,fontWeight:"500"}} onPress={this.started}>Sign Up</Text>
+                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#580A77",fontSize:15,fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
 
                 </Text>
             </TouchableOpacity>
 
 
-           
+           </View>
 
         </View>
       );
@@ -87,15 +91,30 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
+  container2: {
+    flex: 1,
+
+    backgroundColor:"#DFC7EF",
+    
+    borderRadius:20,
+  
+  },
 
   greeting: {
     marginTop:32,
-    fontSize:18,
+    fontSize:30,
     fontWeight:"400",
-    textAlign:"center",
-    color:"#E9446A"
+    alignItems:"center",
+    color:"#580A77",
   },
+  stretch: {
+    width: 150,
+    height: 150,
+    alignItems:"center" ,
+    borderRadius:75,
+ 
 
+  },
   errorMassage:{
     height:72,
     justifyContent:"center",
@@ -120,14 +139,14 @@ const styles = StyleSheet.create({
     color:"#161F3D"
   },
   inputTitle: {
-    color:"#8A8F9E",
+    color:"#4C3B57",
     fontSize:15,
     textTransform:"uppercase"
 
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#E9446A",
+    backgroundColor:"#580A77",
     borderRadius:4,
     height:52,
     alignItems: "center",

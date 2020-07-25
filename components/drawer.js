@@ -1,31 +1,48 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList} from "react-native";
-import {Card,IconButton} from "react-native-paper";
-import {Icon,Button,Container,Header,Content,Left} from 'native-base';
+import {View,Text,StyleSheet} from "react-native";
+import {createAppContainer}from "react-navigation";
+import {createMaterialBootomTabNavigator} from "react-navigation-material-bottom-tabs";
+import Homescreen from "./home.js";
 
-
-export default class lessonsPage extends React.Component{
+export default class drawer extends React.Component{
 
 
     render() {
         return (
-            <Container >
-                <Text> Loading drawer</Text>
-                <View>
-                <IconButton
-                    type="solid"
-                   
-                    iconleft
-                    icon="plus-circle"
-                    color="#E9446A"
-                    size={80}
-                    onPress={this.addclass} >
-                    </IconButton>
-                    
-                    </View>
-                
-            </Container>
+            <View style={styles.container}>
+                <Text>drawer</Text>
+            </View>
         );
     }
 }
 
+
+const styles=StyleSheet.create({
+
+    container:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+    }
+});
+
+// const TabNavigator=createMaterialBootomTabNavigator(
+//     {
+//     Home:{
+//         screen:Homescreen,
+//     }
+
+//     },
+
+//     {
+//         initialRouteName:"home",
+//         activeColor:"#f0edf6",
+//         inactiveColor:"#3e2465",
+//         barStyle:{ backgroundColor: '#694fad' },
+        
+//     }
+
+
+// );
+
+// export default createAppContainer(TabNavigator);
