@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,StyleSheet} from "react-native";
 import {createAppContainer}from "react-navigation";
-import {createMaterialBootomTabNavigator} from "react-navigation-material-bottom-tabs";
+import {createMaterialBottomTabNavigator} from "react-navigation-material-bottom-tabs";
 import Homescreen from "./home.js";
 
 export default class drawer extends React.Component{
@@ -26,7 +26,7 @@ const styles=StyleSheet.create({
     }
 });
 
-// const TabNavigator=createMaterialBootomTabNavigator(
+// const TabNavigator=createMaterialBottomTabNavigator(
 //     {
 //     Home:{
 //         screen:Homescreen,

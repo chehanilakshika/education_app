@@ -3,7 +3,7 @@ import { Alert, Image,Text, TextInput, View,TouchableOpacity, StyleSheet } from 
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import { ScrollView } from 'react-native-gesture-handler';
-import logo from "./../assets/logo.jpg"
+import logo from "./../assets/logo1.jpg"
 export default class login extends Component {
     state = {
         email: '', 
@@ -13,11 +13,20 @@ export default class login extends Component {
       }
 
       handleLogin=()=>{
+          console.log("login function")
           const {email,password}=this.state;
+          console.log(email);
 
           firebase
             .auth()
             .signInWithEmailAndPassword(email,password)
+            .then((res)=>{
+              console.log(res.user);
+              Alert.alert(
+                "Login success"
+              )
+              this.props.navigation.navigate("home");
+            })
             .catch(error=>this.setState({errorMassage:error.message}));
       };
       
@@ -26,6 +35,10 @@ export default class login extends Component {
         console.log('I am  example');
         this.props.navigation.navigate('home');
     }
+    signup = () =>{
+      console.log('I am  example');
+      this.props.navigation.navigate('signup');
+  }
   render() {
 
       return(
@@ -71,7 +84,7 @@ export default class login extends Component {
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#580A77",fontSize:15,fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
+                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#580A77",fontSize:15,fontWeight:"500"}} onPress={this.signup}>Sign Up</Text>
 
                 </Text>
             </TouchableOpacity>
