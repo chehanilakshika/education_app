@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
-import { Alert, Image,Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, Image,Text,ImageBackground, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import { ScrollView } from 'react-native-gesture-handler';
 import logo from "./../assets/logo1.jpg"
+import log1 from "./../assets/log1.jpg"
+
+
 export default class login extends Component {
     state = {
         email: '', 
@@ -18,19 +21,22 @@ export default class login extends Component {
         const { name, password, email } = this.state
         console.log(name);
         try {
+          console.log('come');
           // here place your signup logic
           if(this.state.email === '' && this.state.password === '' ) {
             Alert.alert('Enter details to signup!')
           } else {
+            console.log('cmslcmslcms')
             this.setState({
               isLoading: true,
             })
             firebase
             .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .createUserWithEmailAndPassword(email, password)
             .then((res) => {
+              console.log('comeaaaa')
               res.user.updateProfile({
-                displayName: this.state.name,
+                displayName: name,
               })
               console.log('User registered successfully!')
               this.setState({
@@ -39,11 +45,14 @@ export default class login extends Component {
                 email: '', 
                 password: ''
               })
-              //this.props.navigation.navigate('Login')
+              Alert.alert("Login success");
+              this.props.navigation.navigate('login')
             })
-            .catch(error => this.setState({ errorMessage: error.message }))      
+            .catch(error => {
+              console.log('error',error);
+              this.setState({ errorMessage: error.message })})      
           }
-          console.log('user successfully signed up!: ', success)
+          //console.log('user successfully signed up!: ', success)
         } catch (err) {
           console.log('error signing up: ', err)
         }
@@ -89,6 +98,9 @@ export default class login extends Component {
 
       return(
         <View style={styles.container}>
+           <ImageBackground
+                                                        style={styles.stretch1}
+                                                        source={log1}>
          <View style={styles.container2}>        
         <View style={styles.greeting}>
             <Image
@@ -96,6 +108,7 @@ export default class login extends Component {
               source={logo}
               width="1"/>
         </View>
+        <Text></Text>
 
             {/* <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
@@ -134,20 +147,19 @@ export default class login extends Component {
 
                   </View>
             </View>
-
             <TouchableOpacity style={styles.button} onPress={this.signUp}>
-                <Text style={{color:"#FFF",fontSize:15,fontWeight:"500"}} >Sign Up</Text>
+                <Text style={{color:"#FFF",fontSize:22}} >Sign Up</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:15}}>New To EduApp? <Text style={{color:"#580A77",fontSize:15,fontWeight:"500"}} onPress={this.signin}>Sign In</Text>
+                <Text style={{color:"#FDFEFE",fontSize:15}}>Already have an account ? <Text style={{color:"#81D4FA",fontSize:18,fontWeight:"500"}} onPress={this.signin}>Sign In</Text>
 
                 </Text>
             </TouchableOpacity>
 
 
            </View>
-
+           </ImageBackground>
         </View>
       );
     
@@ -163,7 +175,6 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
 
-    backgroundColor:"#DFC7EF",
     
     borderRadius:20,
   
@@ -177,10 +188,17 @@ const styles = StyleSheet.create({
     color:"#580A77",
   },
   stretch: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     alignItems:"center" ,
     borderRadius:75,
+ 
+
+  },
+  stretch1: {
+    flex: 1,
+    padding:1,
+   
  
 
   },
@@ -202,15 +220,14 @@ const styles = StyleSheet.create({
     marginHorizontal:30
   },
   input:{
-    borderBottomColor:"#8A8F9E",
+    borderBottomColor:"#FDFEFE",
     borderBottomWidth:StyleSheet.hairlineWidth,
-    fontSize:15,
-    color:"#161F3D"
+    fontSize:16,
+    color:"#B0BEC5"
   },
   inputTitle: {
-    color:"#4C3B57",
-    fontSize:15,
-    textTransform:"uppercase"
+    color:"#FDFEFE",
+    fontSize:18,
 
   },
   button:{

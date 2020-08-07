@@ -1,30 +1,95 @@
 import React from 'react';
-import {View,Text,ScrollView} from "react-native";
+import {View,Text,ScrollView, Alert,ImageBackground, StyleSheet} from "react-native";
 import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import Drawer from './drawer';
 import {  Header, Content, Container } from 'native-base';
+import firebase from '../database/firebase';
+import _ from 'lodash';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import home1 from "./../assets/a4.jpg"
+import a1 from "./../assets/a6.jpg"
+import a8 from "./../assets/a8.png"
+
 
 
 export default class classesPage extends React.Component{
+
+        state ={
+                array:[],
+        }
+
+        logout = () =>{
+                firebase.auth().signOut().then(()=>{
+                        this.props.navigation.navigate("login");
+                })
+        }
+
+        componentDidMount() {
+                const myArray =[];
+                firebase.database().ref("/classes").on("value", (data)=>{
+                        const dataList = _.map(data.val(), (val, key) => {
+                                const postData = val;
+                                return {
+                                  val,
+                                  key: key
+                                }
+                              });
+                        console.log(dataList);  
+                        
+                        for(let i =0; i < dataList.length ; i++){
+                                myArray.push([dataList[i].key, dataList[i].val.date,dataList[i].val.myclass, dataList[i].val.time]);
+                        }
+        
+                        console.log("myArray", myArray);
+                        this.setState({
+                                array:myArray,
+                        })
+                })
+
+                
+        }
+
+        delete = (key) =>{
+                firebase.database().ref(`/classes/${key}`).remove();
+                Alert.alert("delete success")
+                this.props.navigation.navigate('home');
+            }
+        
+            deleteLesson = (key) =>{
+                Alert.alert(
+                    'Alert',
+                      'are you sure to delete this post',
+                      [
+                        {text: 'OK', onPress: () => {this.delete(key)},  style: 'cancel'}, 
+                        {text: 'cancel', onPress: () => {this.props.navigation.navigate('classes')},  style: 'cancel'},            
+                      ]
+                  )
+            }
 
     
     addclass = () =>{
         console.log('I am  adding a class');
         this.props.navigation.navigate('addclass');
     }
+    editclass = () =>{
+      console.log('I am  editing a class');
+      this.props.navigation.navigate('editclass');
+  }
     render() {
         return (
-            <Container>
-                <Content>
+                <View style={styles.container}>               
+                        <ImageBackground
+                                                        style={styles.stretch}
+                                                        source={home1}>
                                     <IconButton
                                 
                                                 type="solid"
                                             
                                                 iconRight
                                                 icon="plus-circle"
-                                                color="#5D248C"
+                                                color="#6A1B9A"
                                                 size={50}
                                                 onPress={this.addclass} >
                                     </IconButton>
@@ -50,42 +115,197 @@ export default class classesPage extends React.Component{
                                                 onPress={() => console.log('Pressed')} >
 
                                     <Text></Text></IconButton> */}
-                                                
+                                         <ScrollView>      
                                     <View>
                                                 
-                                            <ScrollView>
-                                                
-                            
-                                                    <Card>
-                                                    
-                                                            <CardAction 
-                                                                    separator={true} 
-                                                                    inColumn={false}>
-                                                            <CardButton
-                                                                    onPress={() => {}}
-                                                                    title="Classes"
-                                                                    color="#1C0F6B"
-                                                            />
-                                                    
-                                                            </CardAction>
-                                                
-                                                    </Card>
+                                           
                                             
-                                                                
-                                                
-                                                
-                                            </ScrollView>
-                                    </View>
-                                            
-                        </Content>
-                
-                            <View style={{marginBottom:20, paddingBottom:20}}>
-                                    <Drawer/>
-                            </View>
+                                                   
+                                                           {this.state.array.map((data, i)=>(
+                                                                   <View style={styles.container3}>
+                                           
+                                                                   <ImageBackground
+                                                                               style={styles.stretch2}
+                                                                               source={a1}>
+                                                                  
+                                                               <View>                                                                           
+                                                                           <Text style={styles.greeting}>Class Name  : {data[2]}</Text>
+                                                                           <View style={{ flexDirection: 'row'}}>
+                                                                           <Text style={styles.greeting}>Date : </Text><Text style={styles.greeting2}>{data[1]}</Text>
+                                                                           <Text>       </Text>
+                                                                           <Text style={styles.greeting}>Time : </Text><Text style={styles.greeting2}>{data[3]}</Text>
+                                                                           </View>
+                                                                   </View>
+                                                                   <View style={{flex: 1, flexDirection: 'row'}}>
+                                                                   <TouchableOpacity onPress={()=>this.deleteLesson(data[0])}> 
+                                                                   <IconButton
+                                
+                                                                                        type="solid"
+                                                                                
+                                                                                        iconRight
+                                                                                        icon="delete-circle"
+                                                                                        color="#FF0000"
+                                                                                        size={40}>
+                                                                                         
+                                                                        </IconButton>
+                                                                        </TouchableOpacity>
+                                                                        <IconButton
+                                
+                                                                                        type="solid"
+                                                                                
+                                                                                        iconRight
+                                                                                        icon="pencil-circle"
+                                                                                        color="#33CC33"
+                                                                                        size={40}
+                                                                                        onPress={this.editclass} >
+                                                                        </IconButton>
 
-        </Container>
+                                                                     </View>   
+
+                                                                  
+                                                                   </ImageBackground>          
+                                                </View>
+                                                           ))}
+                                                   
+                                                                
+                                                  
+                                                   </View>
+                                            </ScrollView>
+                                  
+                                            
+                        </ImageBackground>  
+                
+                           
+
+         </View>
 
         );
     }
 }
 
+const styles =StyleSheet.create({
+        container: {
+            flex: 1,
+            padding:1,
+            backgroundColor:"#17202A",
+    
+            
+          },
+          container2: {
+            flex: 1,
+            marginTop:1,
+            marginBottom:10,
+            marginRight:10,
+            marginLeft:10,
+            borderRadius:20,
+            padding:1,
+    
+          },
+          container3: {
+            flex: 1,
+            
+            marginTop:2,
+            marginBottom:20,
+            marginRight:10,
+            marginLeft:10,
+            backgroundColor:"#455A64",
+            justifyContent: "space-between",
+            borderRadius:0,
+            padding:1,
+    
+          },
+          
+    
+    
+          button:{
+            flex: 1,
+          
+            backgroundColor:"#B7B2BC",
+            borderRadius:4,
+            alignItems: "center",
+            justifyContent: "space-between",
+          },
+          stretch: {
+            flex: 1,
+            padding:1,
+           
+           },
+           stretch2: {
+            borderRadius:20,
+            padding:10,
+    
+            flex:1,
+            alignItems:"center" ,
+            borderRadius:10,
+            overlayColor:"#fff",
+            marginTop:10,
+            marginBottom:10,
+            marginRight:10,
+            marginLeft:10,
+         
+           },
+           greeting: {
+            marginTop:5,
+            fontSize:18,
+            fontWeight:"400",
+            alignItems:"center",
+            color:"#212121",
+    
+          },
+          greeting2: {
+                marginTop:5,
+                fontSize:18,
+                fontWeight:"400",
+                alignItems:"center",
+                color:"#1A237E",
+        
+              },
+    
+          GooglePlusStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: '#dc4e41',
+            borderWidth: 0.5,
+            borderColor: '#fff',
+            height: 40,
+            width: 220,
+            borderRadius: 5,
+            margin: 5,
+          },
+          FacebookStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: 'transparent',        
+            borderWidth: 0.5,
+            borderColor: '#fff',
+            borderRadius: 5,
+            margin: 5,
+          },
+          ImageIconStyle: {
+            padding: 10,
+            margin: 5,
+            resizeMode: 'stretch',
+            borderRadius:50
+          },
+          TextStyle: {
+            color: 'black',
+            marginBottom: 4,
+            alignItems: 'center',
+            fontSize:32
+          },
+          SeparatorLine: {
+            backgroundColor: '#fff',
+            width: 1,
+            height: 40,
+          },
+          MainContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 10,
+    
+    
+          },
+    })
+    
+    

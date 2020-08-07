@@ -6,7 +6,7 @@ import Drawer from './drawer';
 import { Thumbnail } from 'native-base';
 import home1 from "./../assets/a4.jpg"
 
-export default class addclass extends Component {
+export default class editclass extends Component {
     state = {
         myclass: '', 
         time: '', 
@@ -14,30 +14,7 @@ export default class addclass extends Component {
         
       }
 
-     addNewClass = () => {
-       console.log('addclass')
-        const  {myclass,time,date} = this.state;
-        console.log(myclass);
-        setTimeout({},400000);
-        firebase.database().ref('/classes').push({myclass,time,date})
-        .then(()=>{
-          this.setState({
-            myclass:"",
-            time:"",
-            date:"",
-          })
-          console.log('inserted');
-          Alert.alert("insert success");
-          this.props.navigation.navigate('classes');
-        })
-        .catch(error =>{console.log("error ",error)})
-     }
-      
-
-      classes = () =>{
-        console.log('I have  classes');
-        this.props.navigation.navigate('classes');
-    }
+    
   render() {
 
       return(
@@ -45,7 +22,7 @@ export default class addclass extends Component {
            <ImageBackground
                                                         style={styles.stretch}
                                                         source={home1}>
-            <Text style={styles.greeting}>{"Add new Class.."}</Text>
+            <Text style={styles.greeting}>{"Edit new Class.."}</Text>
 
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
@@ -87,7 +64,7 @@ export default class addclass extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} >
-                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.addNewClass}>Submit</Text>
+                <Text style={{color:"#FFF",fontWeight:"500"}} >Submit</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
@@ -143,7 +120,7 @@ const styles = StyleSheet.create({
     color:"#161F3D"
   },
   inputTitle: {
-    color:"#4C3B57",
+    color:"#9C27B0",
     fontSize:20,
 
   },

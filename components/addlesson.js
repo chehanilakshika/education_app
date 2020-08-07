@@ -1,16 +1,17 @@
 import React,{Component} from 'react';
-import { Text, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import Drawer from './drawer';
 import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
 import { Icon } from 'react-native-elements';
+import home1 from "./../assets/a4.jpg"
 
 export default class addclass extends Component {
     state = {
         myclass: '', 
-        time: '', 
-        date:''
+        mylink: '', 
+        array:[],
         
       }
 
@@ -19,12 +20,31 @@ export default class addclass extends Component {
 
       classes = () =>{
         console.log('I have  classes');
-        this.props.navigation.navigate('classes');
+        console.log('addclass')
+        const  {myclass,mylink} = this.state;
+        console.log(myclass);
+        setTimeout({},400000);
+        firebase.database().ref('/lessons').push({myclass,mylink})
+        .then(()=>{
+          this.setState({
+            myclass:"",
+            time:"",
+            date:"",
+          })
+          console.log('inserted');
+          Alert.alert("insert success");
+          this.props.navigation.navigate('lessons');
+        })
+        .catch(error =>{console.log("error ",error)})
+        //this.props.navigation.navigate('classes');
     }
   render() {
 
       return(
         <View style={styles.container}>
+          <ImageBackground
+                                                        style={styles.stretch}
+                                                        source={home1}>
             <Text style={styles.greeting}>{"Add new lesson.."}</Text>
 
             <View style={styles.errorMassage}>
@@ -44,18 +64,12 @@ export default class addclass extends Component {
                   
 
                   <View>
-                        <Text style={styles.inputTitle}>Add Pdf</Text>
-                        <TouchableOpacity style={styles.button1} >
-                          <View style={styles.container1}>
-                <Text style={{color:"#090909",fontSize:20,fontWeight:"500"}} onPress={this.classes}>Upload from Device</Text>
-                <Icon
-  name='arrow-up'
-  type='evilicon'
-  color='black  '
-  size={50}
-/></View>
-            </TouchableOpacity>
-
+                        <Text style={styles.inputTitle}>Add Pdf Link</Text>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={mylink=>this.setState({mylink})}
+                            value={this.state.mylink}
+                         ></TextInput>
                   </View>
 
                  
@@ -75,7 +89,7 @@ export default class addclass extends Component {
             </TouchableOpacity> */}
 
 
-
+</ImageBackground>
         </View>
       );
     
@@ -88,15 +102,11 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
-  container1: {
-    
-    flexDirection:"row" ,
-  },
 
   greeting: {
     marginTop:32,
     color:"#580A77",
-    fontSize:18,
+    fontSize:26,
     fontWeight:"400",
     textAlign:"center"
   },
@@ -119,15 +129,14 @@ const styles = StyleSheet.create({
     marginHorizontal:30
   },
   input:{
-    borderBottomColor:"#8A8F9E",
+    borderBottomColor:"#4A148C",
     borderBottomWidth:StyleSheet.hairlineWidth,
     fontSize:15,
     color:"#161F3D"
   },
   inputTitle: {
     color:"#4C3B57",
-    fontSize:14,
-    textTransform:"uppercase"
+    fontSize:20,
 
   },
   button:{
@@ -138,13 +147,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  button1:{
-    marginHorizontal:30,
-    backgroundColor:"transparent",
-    borderRadius:4,
-    height:52,
-    alignItems: "center",
-    justifyContent: "center",
-  }
+  stretch: {
+    flex: 1,
+    padding:1,
+   
+   },
 });
     

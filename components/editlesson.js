@@ -1,25 +1,30 @@
 import React,{Component} from 'react';
-import { Alert,Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
+import { Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import Drawer from './drawer';
-import { Thumbnail } from 'native-base';
+import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
+import { Icon } from 'react-native-elements';
 import home1 from "./../assets/a4.jpg"
 
 export default class addclass extends Component {
     state = {
         myclass: '', 
-        time: '', 
-        date:''
+        mylink: '', 
+        array:[],
         
       }
 
-     addNewClass = () => {
-       console.log('addclass')
-        const  {myclass,time,date} = this.state;
+     
+      
+
+      classes = () =>{
+        console.log('I have  classes');
+        console.log('addclass')
+        const  {myclass,mylink} = this.state;
         console.log(myclass);
         setTimeout({},400000);
-        firebase.database().ref('/classes').push({myclass,time,date})
+        firebase.database().ref('/lessons').push({myclass,mylink})
         .then(()=>{
           this.setState({
             myclass:"",
@@ -28,24 +33,19 @@ export default class addclass extends Component {
           })
           console.log('inserted');
           Alert.alert("insert success");
-          this.props.navigation.navigate('classes');
+          this.props.navigation.navigate('lessons');
         })
         .catch(error =>{console.log("error ",error)})
-     }
-      
-
-      classes = () =>{
-        console.log('I have  classes');
-        this.props.navigation.navigate('classes');
+        //this.props.navigation.navigate('classes');
     }
   render() {
 
       return(
         <View style={styles.container}>
-           <ImageBackground
+          <ImageBackground
                                                         style={styles.stretch}
                                                         source={home1}>
-            <Text style={styles.greeting}>{"Add new Class.."}</Text>
+            <Text style={styles.greeting}>{"Edit lesson.."}</Text>
 
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
@@ -53,7 +53,7 @@ export default class addclass extends Component {
 
             <View style={styles.form}>
             <View>
-                        <Text style={styles.inputTitle}>Class</Text>
+                        <Text style={styles.inputTitle}>Lesson Name</Text>
                         <TextInput 
                             style={styles.input}
                             onChangeText={myclass=>this.setState({myclass})}
@@ -61,33 +61,25 @@ export default class addclass extends Component {
                          ></TextInput>
 
                   </View>
+                  
 
                   <View>
-                        <Text style={styles.inputTitle}>Time</Text>
+                        <Text style={styles.inputTitle}>Add Pdf Link</Text>
                         <TextInput 
                             style={styles.input}
-                            onChangeText={time=>this.setState({time})}
-                            value={this.state.time}
+                            onChangeText={mylink=>this.setState({mylink})}
+                            value={this.state.mylink}
                          ></TextInput>
-
                   </View>
 
-                  <View>
-                        <Text style={styles.inputTitle}>Date</Text>
-                        <TextInput 
-                            style={styles.input}
-                            onChangeText={date=>this.setState({date})}
-                            value={this.state.date}
-                         ></TextInput>
-
-                  </View>
+                 
 
 
                   
             </View>
 
             <TouchableOpacity style={styles.button} >
-                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.addNewClass}>Submit</Text>
+                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
@@ -143,7 +135,7 @@ const styles = StyleSheet.create({
     color:"#161F3D"
   },
   inputTitle: {
-    color:"#4C3B57",
+    color:"#9C27B0",
     fontSize:20,
 
   },

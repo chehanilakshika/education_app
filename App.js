@@ -20,6 +20,9 @@ import lessonsPage from "./components/lessons";
 import addClassPage from "./components/addclass";
 import person from "./components/person";
 import addlesson from "./components/addlesson";
+import editlesson from "./components/editlesson";
+import editclass from "./components/editclass";
+import profile from "./components/profile";
 
 import drawer from "./components/drawer";
 import { render } from 'react-dom';
@@ -65,6 +68,9 @@ export default class App extends React.Component {
         <Stack.Screen name= "addclass" component={addClassPage} />
         <Stack.Screen name= "person" component={person} />
         <Stack.Screen name= "addlesson" component={addlesson} />
+        <Stack.Screen name= "editclass" component={editclass} />
+        <Stack.Screen name= "editlesson" component={editlesson} />
+        <Stack.Screen name= "profile" component={profile} />
 
       </Stack.Navigator>
     </NavigationContainer>

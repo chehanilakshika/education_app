@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { ImageBackground,Image,Text, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from "react-native-vector-icons";
+import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
 import home1 from "./../assets/a4.jpg"
 import classrm from "./../assets/a7.png"
 import a1 from "./../assets/a6.jpg"
@@ -19,6 +19,14 @@ export default class home extends Component{
         console.log('I am  example');
         this.props.navigation.navigate('lessons');
     }
+    login = () =>{
+      console.log('return to log in');
+      this.props.navigation.navigate('login');
+  }
+  profile = () =>{
+    console.log('I am profile');
+    this.props.navigation.navigate('profile');
+}
     render (){
         return(
             <View style={styles.container}>
@@ -30,14 +38,17 @@ export default class home extends Component{
                         
                             <View style={styles.greeting}>
 
-                                <Text style={styles.greeting}>Classmate is now on your fingerTips</Text>
-            
+                                <Text style={styles.greeting}>Classmate is now on your fingerTips..!</Text>
+                                <Text style={styles.greeting}></Text>
+
                             </View>
+
+
                             
                             <View style={styles.container2}>
                                         <View style={styles.container3}>
                                                 <ImageBackground
-                                                        style={styles.stretch}
+                                                        style={styles.stretch2}
                                                         source={a1}>
 
                                                         <View style={styles.MainContainer}>
@@ -62,11 +73,12 @@ export default class home extends Component{
                      
 
                                         </View>
+                                        <Text style={styles.greeting}></Text>
 
                                         <View style={styles.container3}>
                                                 
                                                     <ImageBackground
-                                                            style={styles.stretch}
+                                                            style={styles.stretch2}
                                                              source={a1}>
                                                         <View style={styles.MainContainer}>
                                                                         <TouchableOpacity 
@@ -83,12 +95,42 @@ export default class home extends Component{
                                                                         {/* <View style={styles.SeparatorLine} /> */}
                                                                         <Text style={styles.TextStyle}> Lessons </Text>
                                                                         </TouchableOpacity>
+                                                                        
                                                         </View>
+                                                        
                                                                 
                                             
                                                     </ImageBackground> 
 
-                                        </View>    
+                                        </View> 
+
+                                        <View style={styles.container4}>
+                                                                   <TouchableOpacity onPress={()=>this.deleteLesson(data[0])}> 
+                                                                   <IconButton
+                                
+                                                                                        type="solid"
+                                                                                
+                                                                                        iconRight
+                                                                                        icon="account-circle"
+                                                                                        color="#000099"
+                                                                                        size={45}
+                                                                                        onPress={this.profile}>
+                                                                                         
+                                                                        </IconButton>
+                                                                        </TouchableOpacity>
+                                                                        <IconButton
+                                
+                                                                                        type="solid"
+                                                                                
+                                                                                        iconRight
+                                                                                        icon="logout"
+                                                                                        color="#000099"
+                                                                                        size={40}
+                                                                                        onPress={this.login} >
+                                                                        </IconButton>
+
+                                                                     </View>   
+  
                             </View>
                             
                     </ScrollView>
@@ -105,7 +147,7 @@ const styles =StyleSheet.create({
     container: {
         flex: 1,
         padding:1,
-        backgroundColor:"#AA90BF",
+        backgroundColor:"#17202A",
 
         
       },
@@ -125,9 +167,21 @@ const styles =StyleSheet.create({
         marginBottom:10,
         marginRight:10,
         marginLeft:10,
-        backgroundColor:"#fff",
+        backgroundColor:"#455A64",
         justifyContent: "space-between",
-        borderRadius:20,
+        borderRadius:0,
+        padding:1,
+
+      },
+      container4: {
+        flex: 1,
+        flexDirection:"row",
+        marginTop:10,
+        marginBottom:10,
+        marginRight:10,
+        marginLeft:10,
+        justifyContent: "space-between",
+        borderRadius:0,
         padding:1,
 
       },
@@ -143,6 +197,11 @@ const styles =StyleSheet.create({
         justifyContent: "space-between",
       },
       stretch: {
+        flex: 1,
+        padding:1,
+       
+       },
+       stretch2: {
         borderRadius:20,
         padding:10,
 
@@ -210,5 +269,13 @@ const styles =StyleSheet.create({
 
 
       },
+      button1:{
+        marginHorizontal:30,
+        backgroundColor:"#580A77",
+        borderRadius:4,
+        height:52,
+        alignItems: "center",
+        justifyContent: "center",
+      }
 })
 
