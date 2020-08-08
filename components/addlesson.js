@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
-import { Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
+import { Text, TextInput, View,ScrollView, TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import Drawer from './drawer';
 import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
 import { Icon } from 'react-native-elements';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 
 export default class addclass extends Component {
     state = {
@@ -43,10 +43,12 @@ export default class addclass extends Component {
       return(
         <View style={styles.container}>
           <ImageBackground
+          
                                                         style={styles.stretch}
                                                         source={home1}>
+             
             <Text style={styles.greeting}>{"Add new lesson.."}</Text>
-
+            <ScrollView>
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
@@ -88,7 +90,7 @@ export default class addclass extends Component {
                 </Text>
             </TouchableOpacity> */}
 
-
+</ScrollView>
 </ImageBackground>
         </View>
       );
@@ -105,9 +107,9 @@ const styles = StyleSheet.create({
 
   greeting: {
     marginTop:32,
-    color:"#580A77",
+    color:"#000066",
     fontSize:26,
-    fontWeight:"400",
+    fontWeight:"bold",
     textAlign:"center"
   },
 
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#29B6F6",
     borderRadius:4,
     height:52,
     alignItems: "center",

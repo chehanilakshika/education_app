@@ -1,16 +1,11 @@
 import React from 'react';
 import {View,Text,ScrollView, Alert,ImageBackground, StyleSheet} from "react-native";
-import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
-import Drawer from './drawer';
-import {  Header, Content, Container } from 'native-base';
+import { IconButton} from 'react-native-paper';
 import firebase from '../database/firebase';
 import _ from 'lodash';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 import a1 from "./../assets/a6.jpg"
-import a8 from "./../assets/a8.png"
 
 
 
@@ -73,9 +68,12 @@ export default class classesPage extends React.Component{
         console.log('I am  adding a class');
         this.props.navigation.navigate('addclass');
     }
-    editclass = () =>{
+    editclass = (key,date,classa,time) =>{
+      //const key = this.state.key;
       console.log('I am  editing a class');
-      this.props.navigation.navigate('editclass');
+    
+
+      this.props.navigation.navigate('editclass',{key,date,classa,time});
   }
     render() {
         return (
@@ -89,7 +87,7 @@ export default class classesPage extends React.Component{
                                             
                                                 iconRight
                                                 icon="plus-circle"
-                                                color="#6A1B9A"
+                                                color="#29B6F6"
                                                 size={50}
                                                 onPress={this.addclass} >
                                     </IconButton>
@@ -149,16 +147,19 @@ export default class classesPage extends React.Component{
                                                                                          
                                                                         </IconButton>
                                                                         </TouchableOpacity>
-                                                                        <IconButton
+                                                                         
+                                                                        <TouchableOpacity onPress={()=>this.editclass(data[0],data[1],data[2],data[3])}> 
+                                                                   <IconButton
                                 
                                                                                         type="solid"
                                                                                 
                                                                                         iconRight
                                                                                         icon="pencil-circle"
                                                                                         color="#33CC33"
-                                                                                        size={40}
-                                                                                        onPress={this.editclass} >
+                                                                                        size={40}>
+                                                                                         
                                                                         </IconButton>
+                                                                        </TouchableOpacity>
 
                                                                      </View>   
 

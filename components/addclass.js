@@ -1,10 +1,7 @@
 import React,{Component} from 'react';
-import { Alert,Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Alert,Text, TextInput,ScrollView, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
 import firebase from '../database/firebase';
-import Drawer from './drawer';
-import { Thumbnail } from 'native-base';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 
 export default class addclass extends Component {
     state = {
@@ -46,7 +43,7 @@ export default class addclass extends Component {
                                                         style={styles.stretch}
                                                         source={home1}>
             <Text style={styles.greeting}>{"Add new Class.."}</Text>
-
+            <ScrollView>
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
@@ -87,7 +84,7 @@ export default class addclass extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} >
-                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.addNewClass}>Submit</Text>
+                <Text style={{color:"#FFF",fontWeight:"bold",fontSize:22}} onPress={this.addNewClass}>Submit</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
@@ -96,7 +93,7 @@ export default class addclass extends Component {
                 </Text>
             </TouchableOpacity> */}
 
-
+</ScrollView>
 </ImageBackground>
         </View>
       );
@@ -113,9 +110,9 @@ const styles = StyleSheet.create({
 
   greeting: {
     marginTop:32,
-    color:"#580A77",
+    color:"#0277BD",
     fontSize:26,
-    fontWeight:"400",
+    fontWeight:"bold",
     textAlign:"center"
   },
 
@@ -149,7 +146,7 @@ const styles = StyleSheet.create({
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#0277BD",
     borderRadius:4,
     height:52,
     alignItems: "center",

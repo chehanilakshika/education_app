@@ -1,19 +1,47 @@
 import React,{Component} from 'react';
-import { Alert,Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
+import { Alert,Text, TextInput,ScrollView, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
-import Drawer from './drawer';
-import { Thumbnail } from 'native-base';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 
 export default class editclass extends Component {
     state = {
+        key: "",
         myclass: '', 
         time: '', 
         date:''
         
       }
 
+
+      componentDidMount (){
+        const {key,date,classa,time} = this.props.route.params;
+        this.setState({
+          key:key,
+          date: date,
+          myclass: classa,
+          time: time,
+        })
+      }
+
+      onUpdate = () =>{
+        const {date,myclass,time} = this.state;
+        const key1 = this.state.key
+        console.log(date,"date")
+        firebase.database().ref('/classes').child(key1).update({date,myclass,time})
+        .then(() => {
+
+          console.log('update');
+          Alert.alert("Success");
+          
+          this.props.navigation.navigate("home");
+
+        })
+        .catch((error)=>{
+          console.log('error');
+        })
+      }
+ 
     
   render() {
 
@@ -22,8 +50,9 @@ export default class editclass extends Component {
            <ImageBackground
                                                         style={styles.stretch}
                                                         source={home1}>
+             
             <Text style={styles.greeting}>{"Edit new Class.."}</Text>
-
+            <ScrollView>
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
@@ -63,7 +92,7 @@ export default class editclass extends Component {
                   
             </View>
 
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress={this.onUpdate}>
                 <Text style={{color:"#FFF",fontWeight:"500"}} >Submit</Text>
             </TouchableOpacity>
 
@@ -73,7 +102,7 @@ export default class editclass extends Component {
                 </Text>
             </TouchableOpacity> */}
 
-
+</ScrollView>
 </ImageBackground>
         </View>
       );
@@ -126,7 +155,7 @@ const styles = StyleSheet.create({
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#0277BD",
     borderRadius:4,
     height:52,
     alignItems: "center",

@@ -3,7 +3,7 @@ import { ImageBackground,Text, View,ScrollView, StyleSheet, Alert } from 'react-
 import { IconButton } from 'react-native-paper';
 import _ from 'lodash';
 import firebase from '../database/firebase';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 import a1 from "./../assets/a6.jpg"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -57,9 +57,12 @@ export default class home extends Component{
         console.log('I am  example');
         this.props.navigation.navigate('addlesson');
     }
-    editlesson = () =>{
-      console.log('I am editing  lesson');
-      this.props.navigation.navigate('editlesson');
+    editlesson = (key,name,link) =>{
+      //const key = this.state.key;
+      console.log('I am  editing a lesson');
+    
+
+      this.props.navigation.navigate('editlesson',{key,name,link});
   }
     render (){
         return(
@@ -73,7 +76,7 @@ export default class home extends Component{
                             
                                 iconRight
                                 icon="plus-circle"
-                                color="#6A1B9A"
+                                color="#29B6F6"
                                 size={50}
                                 onPress={this.addlesson} >
                     </IconButton>
@@ -107,7 +110,8 @@ export default class home extends Component{
                                                                                                     size={40}>
                                                                                                     
                                                                                     </IconButton>
-                                                                                    </TouchableOpacity>
+                                                                                    </TouchableOpacity >
+                                                                                    <TouchableOpacity onPress={()=>this.editlesson(data[0],data[1],data[2],data[3])}>
                                                                                     <IconButton
                                                                                                     
                                                                                                     type="solid"
@@ -116,10 +120,11 @@ export default class home extends Component{
                                                                                                     icon="pencil-circle"
                                                                                                     color="#33CC33"
                                                                                                     size={40}
-                                                                                                    onPress={this.editlesson} >
+                                                                                                    >
                                                                                                    
                                                                                                     
                                                                                     </IconButton>
+                                                                                    </TouchableOpacity>
                                                                                     </View>
                                                                                     
                                                                             </View>

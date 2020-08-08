@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
-import { Text, TextInput, View,TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
+import { Text, TextInput, View,TouchableOpacity,ScrollView, ImageBackground,StyleSheet, Alert } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import Drawer from './drawer';
 import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
 import { Icon } from 'react-native-elements';
-import home1 from "./../assets/a4.jpg"
+import home1 from "./../assets/Capture6.png"
 
 export default class addclass extends Component {
     state = {
@@ -14,30 +14,37 @@ export default class addclass extends Component {
         array:[],
         
       }
+      componentDidMount (){
+        const {key,name,link} = this.props.route.params;
+        this.setState({
+          key:key,
+          myclass: name,
+          mylink: link,
+          
+        })
+      }
 
+      onUpdate = () =>{
+        const {myclass,mylink} = this.state;
+        const key1 = this.state.key
+        console.log(myclass,"myclass")
+        firebase.database().ref('/lessons').child(key1).update({myclass,mylink})
+        .then(() => {
+
+          console.log('update');
+          Alert.alert(" Update Success");
+          
+          this.props.navigation.navigate("home");
+
+        })
+        .catch((error)=>{
+          console.log('error');
+        })
+      }
      
       
 
-      classes = () =>{
-        console.log('I have  classes');
-        console.log('addclass')
-        const  {myclass,mylink} = this.state;
-        console.log(myclass);
-        setTimeout({},400000);
-        firebase.database().ref('/lessons').push({myclass,mylink})
-        .then(()=>{
-          this.setState({
-            myclass:"",
-            time:"",
-            date:"",
-          })
-          console.log('inserted');
-          Alert.alert("insert success");
-          this.props.navigation.navigate('lessons');
-        })
-        .catch(error =>{console.log("error ",error)})
-        //this.props.navigation.navigate('classes');
-    }
+    
   render() {
 
       return(
@@ -45,8 +52,9 @@ export default class addclass extends Component {
           <ImageBackground
                                                         style={styles.stretch}
                                                         source={home1}>
-            <Text style={styles.greeting}>{"Edit lesson.."}</Text>
 
+            <Text style={styles.greeting}>{"Edit lesson.."}</Text>
+          <ScrollView>
             <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View>
@@ -79,7 +87,7 @@ export default class addclass extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} >
-                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
+                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.onUpdate}>Submit</Text>
             </TouchableOpacity>
 
             {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
@@ -87,7 +95,7 @@ export default class addclass extends Component {
 
                 </Text>
             </TouchableOpacity> */}
-
+</ScrollView>
 
 </ImageBackground>
         </View>
@@ -135,13 +143,13 @@ const styles = StyleSheet.create({
     color:"#161F3D"
   },
   inputTitle: {
-    color:"#9C27B0",
+    color:"#000066",
     fontSize:20,
 
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#0277BD",
     borderRadius:4,
     height:52,
     alignItems: "center",

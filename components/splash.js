@@ -1,48 +1,45 @@
 import React,{Component} from 'react';
-import { ImageBackground,Image,Text, View,TouchableOpacity, StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from "react-native-vector-icons";
-import home1 from "./../assets/a4.jpg"
-import classrm from "./../assets/a7.png"
-import a1 from "./../assets/a6.jpg"
-import a8 from "./../assets/a8.png"
-import logo from "./../assets/logo1.jpg"
-
+import { ImageBackground,Text, View, StyleSheet } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import 'react-native-gesture-handler';
+import log1 from "./../assets/Capture5.png"
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default class profile extends Component{
 
-   
+  signup = () =>{
+    console.log('I am  signing up ');
+    this.props.navigation.navigate('signup');
+}
     render (){
+
         return(
+          
             <View style={styles.container}>
                  
                  <ImageBackground
                         style={styles.container2}
-                        source={home1}>
+                        source={log1}>
                              <ScrollView>
-                                 <View>
-                                      <View style={styles.container3}>
-                                                <ImageBackground
-                                                    style={styles.stretch2}
-                                                    source={a1}>
-                                                        <View>
-                                                        <View style={styles.greeting}>
-                                                                        <Image
-                                                                        style={styles.stretch}
-                                                                        source={logo}
-                                                                        width="1"/>
-                                                                        <Text></Text>
-                                                                    </View>
-                                                            <Text style={styles.greeting}>Class Name</Text>
-                                                        </View>
-
-                                                </ImageBackground>
-                                                                  
-                                      </View>
-                                </View>
+                    <View style = {styles.container3}>
+                             <IconButton
+                                
+                                type="solid"
+                                style={styles.iconb}
+                                iconRight
+                                icon="arrow-right-circle"
+                                color="#1976D2"
+                                size={60}
+                                onPress={this.signup} >
+                                  
+                            </IconButton>
+                            <Text style={styles.greeting}>B.A.L.C.Lakshika</Text>
+                            <Text style={styles.greeting}>2017/CS/094</Text>
+                    </View>  
+                   
                              </ScrollView>    
                 </ImageBackground>
+                
             </View>
 
         );
@@ -59,23 +56,25 @@ const styles =StyleSheet.create({
       },
       container2: {
         flex: 1,
-            padding:1,
-           
-
+        padding:1,
+        
       },
       container3: {
         flex: 1,
-        marginTop:10,
+        marginTop:300,
         marginBottom:10,
         marginRight:50,
         marginLeft:50,
-        backgroundColor:"#455A64",
         justifyContent: "space-between",
         borderRadius:0,
+        alignItems: "center",
+
         padding:1,
 
       },
-      
+      iconb:{
+
+      },
 
 
       button:{
@@ -111,9 +110,9 @@ const styles =StyleSheet.create({
        greeting: {
         marginTop:10,
         fontSize:18,
-        fontWeight:"400",
+        fontWeight:"bold",
         alignItems:"center",
-        color:"#580A77",
+        color:"black",
 
       },
 

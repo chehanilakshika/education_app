@@ -22,7 +22,7 @@ import person from "./components/person";
 import addlesson from "./components/addlesson";
 import editlesson from "./components/editlesson";
 import editclass from "./components/editclass";
-import profile from "./components/profile";
+import splash from "./components/splash";
 
 import drawer from "./components/drawer";
 import { render } from 'react-dom';
@@ -57,20 +57,143 @@ export default class App extends React.Component {
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
     // </View>
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="signup">
-        <Stack.Screen name= "signup" component={SignUpScreen} />
+    <NavigationContainer
+     >
+      <Stack.Navigator  initialRouteName="splash">
+        <Stack.Screen 
+         
+         options={{
+           title: 'Sign Up',
+           alignItems: "center",
+           headerStyle: {
+             alignItems: "center",
+
+           },
+           headerTintColor: '#03A9F4',
+           headerTitleStyle: {
+             fontWeight: 'bold',
+           },
+         }}
+        name= "signup" component={SignUpScreen} />
         <Stack.Screen name= "example" component={ExampleScreen} />
-        <Stack.Screen name= "home" component={HomeScreen} />
-        <Stack.Screen name= "login" component={LoginScreen} />
-        <Stack.Screen name= "classes" component={classesPage} />
-        <Stack.Screen name= "lessons" component={lessonsPage} />
-        <Stack.Screen name= "addclass" component={addClassPage} />
+        <Stack.Screen
+        options={{
+          title: 'Home',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+         name= "home" component={HomeScreen} />
+        <Stack.Screen 
+         options={{
+          title: 'Sign in',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        name= "login" component={LoginScreen} />
+        <Stack.Screen 
+        options={{
+          title: 'Classes page',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        name= "classes" component={classesPage} />
+        <Stack.Screen 
+         options={{
+          title: 'Lessons page',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}name= "lessons" component={lessonsPage} />
+        <Stack.Screen 
+         options={{
+          title: 'Classes page',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}name= "addclass" component={addClassPage} />
         <Stack.Screen name= "person" component={person} />
-        <Stack.Screen name= "addlesson" component={addlesson} />
-        <Stack.Screen name= "editclass" component={editclass} />
-        <Stack.Screen name= "editlesson" component={editlesson} />
-        <Stack.Screen name= "profile" component={profile} />
+        <Stack.Screen 
+         options={{
+          title: 'Add Lesson',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}name= "addlesson" component={addlesson} />
+        <Stack.Screen 
+         options={{
+          title: 'Edit Your Class',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}name= "editclass" component={editclass} />
+        <Stack.Screen 
+         options={{
+          title: 'Edit lesson ',
+          alignItems: "center",
+          headerStyle: {
+            alignItems: "center",
+
+          },
+          headerTintColor: '#03A9F4',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}name= "editlesson" component={editlesson} />
+        <Stack.Screen 
+        options={{
+          title: 'classmate',
+          
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        name= "splash" component={splash} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -78,4 +201,14 @@ export default class App extends React.Component {
 }
 }
 
+const styles = StyleSheet.create({
+  navigator: {
+    backgroundColor:"#580A77",
 
+  },
+ 
+
+ 
+ 
+});
+    

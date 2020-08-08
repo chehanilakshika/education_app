@@ -1,20 +1,29 @@
 import React,{Component} from 'react';
 import { ImageBackground,Image,Text, View,TouchableOpacity, StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
-import home1 from "./../assets/a4.jpg"
+import { IconButton} from 'react-native-paper';
+import home1 from "./../assets/Capture6.png"
 import classrm from "./../assets/a7.png"
 import a1 from "./../assets/a6.jpg"
 import a8 from "./../assets/a8.png"
+import _ from 'lodash';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default class home extends Component{
 
-    classes = () =>{
-        console.log('I am  example');
-        this.props.navigation.navigate('classes');
-    }
+  
+  state ={
+    email:"",
+    array:[],
+}
+
+
+
+
+classes = () =>{
+  console.log('I am  example');
+  this.props.navigation.navigate('classes');
+}
     lessons = () =>{
         console.log('I am  example');
         this.props.navigation.navigate('lessons');
@@ -30,6 +39,7 @@ export default class home extends Component{
     render (){
         return(
             <View style={styles.container}>
+              
                  <ImageBackground
                                                         style={styles.stretch}
                                                         source={home1}>
@@ -114,7 +124,7 @@ export default class home extends Component{
                                                                                         icon="account-circle"
                                                                                         color="#000099"
                                                                                         size={45}
-                                                                                        onPress={this.profile}>
+                                                                                       >
                                                                                          
                                                                         </IconButton>
                                                                         </TouchableOpacity>

@@ -1,16 +1,15 @@
 import React,{Component} from 'react';
-import { Alert, Image,Text, TextInput, ImageBackground,View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, Image,Text,ScrollView, TextInput, ImageBackground,View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
-import { ScrollView } from 'react-native-gesture-handler';
-import logo from "./../assets/logo1.jpg"
-import log1 from "./../assets/log1.jpg"
+import logo from "./../assets/Capture3.png"
+import log1 from "./../assets/Capture6.png"
 
 export default class login extends Component {
     state = {
         email: '', 
         password: '', 
-        errorMassage:null
+        errorMessage:null
         
       }
 
@@ -23,13 +22,26 @@ export default class login extends Component {
             .auth()
             .signInWithEmailAndPassword(email,password)
             .then((res)=>{
-              console.log(res.user);
+              console.log("hi");
+              console.log(res.user.email);
+              this.setState({
+               email:"",
+               
+              })
               Alert.alert(
                 "Login success"
               )
+              this.setState({
+                email:""
+          
+              })
               this.props.navigation.navigate("home");
             })
-            .catch(error=>this.setState({errorMassage:error.message}));
+            .catch(error => {
+              console.log('error',error);
+              this.setState({ errorMessage: error.message })
+              
+            })    
       };
       
 
@@ -48,6 +60,7 @@ export default class login extends Component {
           <ImageBackground
                                                         style={styles.stretch1}
                                                         source={log1}>
+          <ScrollView>
          <View style={styles.container2}>        
         <View style={styles.greeting}>
             <Image
@@ -56,6 +69,7 @@ export default class login extends Component {
               width="1"/>
                <Text></Text>
         </View>
+        {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
 
             {/* <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
@@ -86,17 +100,18 @@ export default class login extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                <Text style={{color:"#FFF",fontSize:22}} >Sign in</Text>
+                <Text style={{color:"#FFF",fontSize:22,fontWeight: 'bold'}} >Sign in</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#FDFEFE",fontSize:15}}>New To EduApp? <Text style={{color:"#81D4FA",fontSize:18,fontWeight:"500"}} onPress={this.signup}>Sign Up</Text>
+                <Text style={{color:"#0277BD",fontSize:15}}>New To Classmate? <Text style={{color:"#000099",fontSize:18,fontWeight: 'bold'}} onPress={this.signup}>Sign Up</Text>
 
                 </Text>
             </TouchableOpacity>
 
 
            </View>
+           </ScrollView>
            </ImageBackground>
         </View>
       );
@@ -127,10 +142,10 @@ const styles = StyleSheet.create({
     color:"#580A77",
   },
   stretch: {
-    width: 100,
-    height: 100,
+    width: 300,
+    height: 90,
     alignItems:"center" ,
-    borderRadius:75,
+    borderRadius:2,
  
 
   },
@@ -149,8 +164,8 @@ const styles = StyleSheet.create({
 
   },
   error: {
-    color:"#E9446A",
-    fontSize:13,
+    color:"#D32F2F",
+    fontSize:15,
     fontWeight:"600",
     textAlign:"center"
   },
@@ -162,16 +177,18 @@ const styles = StyleSheet.create({
     borderBottomColor:"#FDFEFE",
     borderBottomWidth:StyleSheet.hairlineWidth,
     fontSize:16,
-    color:"#B0BEC5"
+    color:"#212121",
+    fontWeight: 'bold',
   },
   inputTitle: {
-    color:"#FDFEFE",
+    color:"#0277BD",
     fontSize:18,
+    fontWeight: 'bold',
 
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#0277BD",
     borderRadius:4,
     height:52,
     alignItems: "center",

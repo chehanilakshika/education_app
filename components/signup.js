@@ -1,10 +1,9 @@
 import React,{Component} from 'react';
-import { Alert, Image,Text,ImageBackground, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, Image,Text,ImageBackground,ScrollView, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
-import { ScrollView } from 'react-native-gesture-handler';
-import logo from "./../assets/logo1.jpg"
-import log1 from "./../assets/log1.jpg"
+import logo from "./../assets/Capture3.png"
+import wall from "./../assets/Capture6.png"
 
 
 export default class login extends Component {
@@ -12,7 +11,7 @@ export default class login extends Component {
         email: '', 
         name: "",
         password: '', 
-        errorMassage:null
+        errorMessage:null
         
       }
 
@@ -50,38 +49,16 @@ export default class login extends Component {
             })
             .catch(error => {
               console.log('error',error);
-              this.setState({ errorMessage: error.message })})      
+              this.setState({ errorMessage: error.message })
+              
+            })      
           }
           //console.log('user successfully signed up!: ', success)
         } catch (err) {
           console.log('error signing up: ', err)
         }
     
-        /////////////////////////////////////////////////
-        // if(this.state.email === '' && this.state.password === '') {
-        //     Alert.alert('Enter details to signin!')
-        //   } else {
-        //     this.setState({
-        //       isLoading: true,
-        //     })
-        //     firebase
-        //     .auth()
-        //     .signInWithEmailAndPassword(this.state.email, this.state.password)
-        //     .then((res) => {
-        //       console.log(res.user)
-        //       console.log('User logged-in successfully!')
-        //       //localStorage.setItem("uid",res.user)
-        //       this.setState({
-        //         isLoading: false,
-        //         email: '', 
-        //         password: ''
-        //       })
-      
-        //       //localStorage.setItem("uid",)
-        //       this.props.navigation.navigate('Dashboard')
-        //     })
-        //     .catch(error => this.setState({ errorMessage: error.message }))
-        //   }
+       
     
       }
       
@@ -100,7 +77,8 @@ export default class login extends Component {
         <View style={styles.container}>
            <ImageBackground
                                                         style={styles.stretch1}
-                                                        source={log1}>
+                                                        source={wall}>
+                            <ScrollView>
          <View style={styles.container2}>        
         <View style={styles.greeting}>
             <Image
@@ -108,8 +86,7 @@ export default class login extends Component {
               source={logo}
               width="1"/>
         </View>
-        <Text></Text>
-
+        {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
             {/* <View style={styles.errorMassage}>
                 {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
             </View> */}
@@ -148,17 +125,18 @@ export default class login extends Component {
                   </View>
             </View>
             <TouchableOpacity style={styles.button} onPress={this.signUp}>
-                <Text style={{color:"#FFF",fontSize:22}} >Sign Up</Text>
+                <Text style={{color:"#FFF",fontWeight: 'bold',fontSize:22}} >Sign Up</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#FDFEFE",fontSize:15}}>Already have an account ? <Text style={{color:"#81D4FA",fontSize:18,fontWeight:"500"}} onPress={this.signin}>Sign In</Text>
+                <Text style={{color:"#0277BD",fontSize:15}}>Already have an account ? <Text style={{color:"#000099",fontSize:18,fontWeight: 'bold'}} onPress={this.signin}>Sign In</Text>
 
                 </Text>
             </TouchableOpacity>
 
 
            </View>
+           </ScrollView>
            </ImageBackground>
         </View>
       );
@@ -188,10 +166,10 @@ const styles = StyleSheet.create({
     color:"#580A77",
   },
   stretch: {
-    width: 100,
+    width: 300,
     height: 100,
     alignItems:"center" ,
-    borderRadius:75,
+    borderRadius:2,
  
 
   },
@@ -210,8 +188,8 @@ const styles = StyleSheet.create({
 
   },
   error: {
-    color:"#E9446A",
-    fontSize:13,
+    color:"#D32F2F",
+    fontSize:15,
     fontWeight:"600",
     textAlign:"center"
   },
@@ -222,17 +200,19 @@ const styles = StyleSheet.create({
   input:{
     borderBottomColor:"#FDFEFE",
     borderBottomWidth:StyleSheet.hairlineWidth,
-    fontSize:16,
-    color:"#B0BEC5"
+    fontSize:15,
+    color:"#212121",
+    fontWeight: 'bold',
   },
   inputTitle: {
-    color:"#FDFEFE",
+    color:"#0277BD",
     fontSize:18,
+    fontWeight: 'bold',
 
   },
   button:{
     marginHorizontal:30,
-    backgroundColor:"#580A77",
+    backgroundColor:"#0277BD",
     borderRadius:4,
     height:52,
     alignItems: "center",
