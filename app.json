@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "EduMobile",
-    "slug": "EduMobile",
+    "name": "Classmate",
+    "slug": "Classmate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/myicon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/myicon.png"
     },
     "android": {
       "package": "com.yourcompany.yourappname",

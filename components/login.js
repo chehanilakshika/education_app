@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { Alert, Image,Text,ScrollView, TextInput, ImageBackground,View,TouchableOpacity, StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import logo from "./../assets/Capture3.png"
 import log1 from "./../assets/Capture6.png"
@@ -71,9 +70,7 @@ export default class login extends Component {
         </View>
         {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
 
-            {/* <View style={styles.errorMassage}>
-                {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
-            </View> */}
+          
             <View style={styles.form}>
                   <View>
                         <Text style={styles.inputTitle}>Email Address</Text>
@@ -174,7 +171,7 @@ const styles = StyleSheet.create({
     marginHorizontal:30
   },
   input:{
-    borderBottomColor:"#FDFEFE",
+    borderBottomColor:"black",
     borderBottomWidth:StyleSheet.hairlineWidth,
     fontSize:16,
     color:"#212121",

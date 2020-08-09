@@ -83,15 +83,11 @@ export default class addclass extends Component {
                   
             </View>
 
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress={this.addNewClass} >
                 <Text style={{color:"#FFF",fontWeight:"bold",fontSize:22}} onPress={this.addNewClass}>Submit</Text>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:13}}>New To EduApp?<Text style={{color:"#E9446A",fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
-
-                </Text>
-            </TouchableOpacity> */}
+           
 
 </ScrollView>
 </ImageBackground>

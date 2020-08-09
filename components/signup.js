@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { Alert, Image,Text,ImageBackground,ScrollView, TextInput, View,TouchableOpacity, StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import logo from "./../assets/Capture3.png"
 import wall from "./../assets/Capture6.png"
@@ -45,7 +44,7 @@ export default class login extends Component {
                 password: ''
               })
               Alert.alert("Login success");
-              this.props.navigation.navigate('login')
+              this.props.navigation.navigate('home')
             })
             .catch(error => {
               console.log('error',error);
@@ -87,9 +86,7 @@ export default class login extends Component {
               width="1"/>
         </View>
         {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
-            {/* <View style={styles.errorMassage}>
-                {this.state.errorMassage &&  <Text style={styles.error}>{this.state.errorMassage}</Text>}
-            </View> */}
+           
             <View style={styles.form}>
 
             <View>
@@ -198,7 +195,7 @@ const styles = StyleSheet.create({
     marginHorizontal:30
   },
   input:{
-    borderBottomColor:"#FDFEFE",
+    borderBottomColor:"#4A148C",
     borderBottomWidth:StyleSheet.hairlineWidth,
     fontSize:15,
     color:"#212121",

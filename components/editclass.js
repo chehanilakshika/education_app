@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { Alert,Text, TextInput,ScrollView, View,TouchableOpacity, ImageBackground,StyleSheet } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
 import home1 from "./../assets/Capture6.png"
 
@@ -93,14 +92,10 @@ export default class editclass extends Component {
             </View>
 
             <TouchableOpacity style={styles.button} onPress={this.onUpdate}>
-                <Text style={{color:"#FFF",fontWeight:"500"}} >Submit</Text>
+                <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.onUpdate} >Submit</Text>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:13}}>New To EduApp?<Text style={{color:"#E9446A",fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
-
-                </Text>
-            </TouchableOpacity> */}
+         
 
 </ScrollView>
 </ImageBackground>

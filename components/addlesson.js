@@ -1,10 +1,6 @@
 import React,{Component} from 'react';
 import { Text, TextInput, View,ScrollView, TouchableOpacity, ImageBackground,StyleSheet, Alert } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../database/firebase';
-import Drawer from './drawer';
-import { IconButton, Colors,RadioButtonItem } from 'react-native-paper';
-import { Icon } from 'react-native-elements';
 import home1 from "./../assets/Capture6.png"
 
 export default class addclass extends Component {
@@ -80,16 +76,11 @@ export default class addclass extends Component {
                   
             </View>
 
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress={this.classes} >
                 <Text style={{color:"#FFF",fontWeight:"500"}} onPress={this.classes}>Submit</Text>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity style={{alignSelf:"center",marginTop:32}}>
-                <Text style={{color:"#414959",fontSize:13}}>New To EduApp?<Text style={{color:"#E9446A",fontWeight:"500"}} onPress={this.home}>Sign Up</Text>
-
-                </Text>
-            </TouchableOpacity> */}
-
+           
 </ScrollView>
 </ImageBackground>
         </View>

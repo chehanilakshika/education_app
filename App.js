@@ -12,19 +12,17 @@ import { Ionicons } from '@expo/vector-icons';
 
 //screens
 import SignUpScreen from './components/signup';
-import ExampleScreen from "./components/example";
 import HomeScreen from "./components/home";
 import LoginScreen from "./components/login";
 import classesPage from "./components/classes";
 import lessonsPage from "./components/lessons";
 import addClassPage from "./components/addclass";
-import person from "./components/person";
 import addlesson from "./components/addlesson";
 import editlesson from "./components/editlesson";
 import editclass from "./components/editclass";
 import splash from "./components/splash";
 
-import drawer from "./components/drawer";
+
 import { render } from 'react-dom';
 
 const Stack = createStackNavigator(); 
@@ -75,7 +73,6 @@ export default class App extends React.Component {
            },
          }}
         name= "signup" component={SignUpScreen} />
-        <Stack.Screen name= "example" component={ExampleScreen} />
         <Stack.Screen
         options={{
           title: 'Home',
@@ -144,7 +141,6 @@ export default class App extends React.Component {
             fontWeight: 'bold',
           },
         }}name= "addclass" component={addClassPage} />
-        <Stack.Screen name= "person" component={person} />
         <Stack.Screen 
          options={{
           title: 'Add Lesson',

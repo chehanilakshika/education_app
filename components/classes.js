@@ -93,26 +93,7 @@ export default class classesPage extends React.Component{
                                     </IconButton>
 
 
-                                    {/* <IconButton
-                                                type="solid"
-                                            
-                                                iconRight
-                                                icon="delete-circle"
-                                                color="#5D248C"
-                                                size={50}
-                                                onPress={() => console.log('Pressed')} >
-
-                                    </IconButton>
-                                            
-                                    <IconButton
-                                                type="solid"
-                                                iconRight
-                                                icon="pencil-circle"
-                                                color="#5D248C"
-                                                size={50}
-                                                onPress={() => console.log('Pressed')} >
-
-                                    <Text></Text></IconButton> */}
+                                  
                                          <ScrollView>      
                                     <View>
                                                 
